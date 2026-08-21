@@ -1,3 +1,9 @@
 name = "tg-notes-date"
 main = "worker.js"
 compatibility_date = "2026-08-21"
+
+
+[[d1_databases]]
+binding = "DB"
+database_name = "spulmik-notes-db"
+database_id = "e166c433-4d0d-4bf2-ad4c-31ff3ff8ba1f"
