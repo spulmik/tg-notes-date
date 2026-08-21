@@ -1,6 +1,8 @@
-addEventListener('fetch', event => {
-	event.respondWith(handleRequest(event.request))
-})
+export default {
+	async fetch(request, env) {
+		return handleRequest(request, env)
+	},
+}
 
 // Функция отправки сообщений в Telegram
 async function sendMessage(chatId, text, token) {
@@ -16,7 +18,7 @@ async function sendMessage(chatId, text, token) {
 	})
 }
 
-async function handleRequest(request) {
+async function handleRequest(request, env) {
 	const BOT_TOKEN = env.BOT_TOKEN
 
 	// Telegram шлет POST-запросы, когда кто-то пишет боту
@@ -29,7 +31,6 @@ async function handleRequest(request) {
 			const text = update.message.text
 			const userName = update.message.from.first_name
 
-			// Логика ответов
 			let reply = ''
 
 			if (text === '/start') {
@@ -41,13 +42,13 @@ async function handleRequest(request) {
 				reply = `Ты написал: "${text}"\n\n...и что мне с этим делать? 🤔`
 			}
 
-			// Шлем ответ юзеру
 			await sendMessage(chatId, reply, BOT_TOKEN)
 		}
 
 		return new Response('OK', { status: 200 })
 	}
 
-	// Если кто-то просто открыл ссылку на Worker'а
-	return new Response('🤖 Бот живой, здоровый, не ебет.', { status: 200 })
+	return new Response('🤖 Бот живой, здоровый, не ебет.', {
+		status: 200,
+	})
 }
