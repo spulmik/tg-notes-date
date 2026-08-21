@@ -38,6 +38,8 @@ async function handleRequest(request, env) {
 			} else if (text === '/help') {
 				reply =
 					'🤖 Команды:\n/start - Начать\n/help - Эта хуйня\n\nОстальное пока не завезли.'
+			} else if (text === '/test'){
+				reply = `Проверка связи`
 			} else {
 				reply = `Ты написал: "${text}"\n\n...и что мне с этим делать? 🤔`
 			}
