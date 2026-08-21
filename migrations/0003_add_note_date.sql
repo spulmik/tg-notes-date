@@ -1,1 +1,0 @@
-npx.cmd wrangler d1 migrations apply spulmik-notes-db --remote
